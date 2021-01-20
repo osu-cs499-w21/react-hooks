@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Clock(props) {
   return (
@@ -6,12 +6,30 @@ function Clock(props) {
   );
 }
 
+function CountMessage(props) {
+  return <p>You clicked {props.count} times</p>;
+}
+
 function CountingButton() {
-  const count = 0;
+  // const count = 0;
+  const [ count, setCount ] = useState(0);
+  // const [ pets, setPets ] = useState({ cats: 2, dogs: 2 });
+  // setPets(prevPets => ({ ...prevPets, fish: 3 }));
+  // const [ cats, setCats ] = useState(0);
+  // const [ dogs, setDogs ] = useState(0);
+  // const [ fish, setFish ] = useState(0);
+  // const [ photos, setPhotos ] = useState([]);
+  // setPhotos(prevPhotos => ([ ...prevPhotos, {url: '...'}]));
+
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => alert("The button was clicked.")}>
+      <CountMessage count={count} />
+      {/*
+        function (prevCount) {
+          return prevCount + 1;
+        }
+        */}
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>
         Click me
       </button>
     </div>
