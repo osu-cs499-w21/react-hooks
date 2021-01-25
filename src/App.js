@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Clock(props) {
+  const [ date, setDate ] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <h2>It is {props.date.toLocaleTimeString()}.</h2>
+    <h2>It is {date.toLocaleTimeString()}.</h2>
   );
 }
 
@@ -21,8 +28,13 @@ function CountingButton() {
   // const [ photos, setPhotos ] = useState([]);
   // setPhotos(prevPhotos => ([ ...prevPhotos, {url: '...'}]));
 
+  useEffect(() => {
+    document.title = `${count} clicks`;
+  }, [ count ]);
+
   return (
     <div>
+      <Clock />
       <CountMessage count={count} />
       {/*
         function (prevCount) {
